@@ -7,176 +7,142 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --brand: #000000; --light: #ffffff; --grey: #f5f5f5; --text-muted: #888; }
+        :root { --brand: #000000; --light: #ffffff; --grey: #f5f5f5; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        /* Set body supaya skrin penuh */
-        body, html { height: 100%; width: 100%; background: var(--light); color: var(--brand); overflow-x: hidden; display: flex; flex-direction: column; }
+        body { background: var(--light); color: var(--brand); overflow-x: hidden; }
 
-        /* --- Navigation Transparent --- */
-        nav {
+        /* --- Header (Footer Atas) --- */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 5%;
-            position: fixed; /* Navigasi terapung atas gambar */
-            top: 0;
-            width: 100%;
-            background: transparent; /* Telus */
-            z-index: 1000;
+            padding: 20px 5%;
+            background: white;
+            border-bottom: 1px solid #eee;
         }
         .logo { 
             font-weight: 800; 
             font-size: 18px; 
             letter-spacing: 3px; 
             text-transform: uppercase; 
-            border: 2px solid var(--brand); /* Bingkai hitam untuk branded look */
-            background: white; /* Letak bg putih sikit untuk logo nampak jelas */
-            padding: 5px 15px; 
+            border: 2px solid black;
+            padding: 5px 12px;
             text-decoration: none;
             color: black;
         }
-        .nav-right { display: flex; align-items: center; gap: 20px; }
-        /* Tukar warna ikon/teks nav jadi hitam untuk branded vibe */
-        .nav-right a { color: black; font-size: 16px; transition: 0.3s; text-decoration: none; font-weight: 600; }
-        .nav-right a:hover { opacity: 0.5; }
-        .nav-right a i { color: black; }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-right a {
+            text-decoration: none;
+            color: black;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-right a:hover { opacity: 0.6; }
+        .nav-right i { font-size: 18px; }
 
-        /* --- Auto-Slider FULL SCREEN --- */
+        /* --- Slider Section (Hampir Full Screen) --- */
         .slider-container {
             width: 100%;
-            height: 100vh; /* 100% tinggi skrin penuh */
+            height: 85vh; /* 85% skrin supaya nampak sikit footer bawah bila skrol */
             position: relative;
             overflow: hidden;
-            background: var(--grey);
+            background: #000;
         }
-
         .slide {
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             opacity: 0;
-            transition: opacity 1.8s ease-in-out; /* Fade lembut */
-            z-index: 1;
+            transition: opacity 1.5s ease-in-out;
         }
+        .slide.active { opacity: 1; z-index: 2; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
 
-        .slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Pastikan gambar tak herot */
-        }
-
-        /* Lapisan gelap sikit kat atas gambar supaya tulisan nampak */
-        .slide::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.1); /* Tipis gila, just enough untuk tulisan */
-        }
-
-        /* --- Hero Content Teks Tengah (Dikekalkan) --- */
+        /* Teks Tengah Atas Gambar */
         .hero-content {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Sentiasa kat tengah skrin */
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 10;
             text-align: center;
-            color: white; /* Tulisan putih */
-            text-shadow: 0 3px 15px rgba(0,0,0,0.4); /* Bayang tebal sikit untuk nampak jelas */
+            color: white;
             width: 90%;
-            max-width: 700px;
         }
         .hero-content h1 { 
-            font-size: clamp(40px, 8vw, 85px); /* Besar gila macam Uniqlo */
+            font-size: clamp(40px, 8vw, 80px); 
             font-weight: 800; 
-            letter-spacing: -3px; 
+            letter-spacing: -2px; 
             line-height: 0.9; 
-            margin-bottom: 20px; 
-            text-transform: uppercase;
-        }
-        .hero-content p {
-            font-weight: 300;
-            font-size: 16px;
-            color: #eee;
-            margin-bottom: 30px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 20px;
         }
         .btn-main { 
             display: inline-block; 
-            padding: 15px 40px; 
-            background: var(--brand); /* Butang hitam */
-            color: white; 
+            padding: 15px 35px; 
+            background: white; 
+            color: black; 
             text-decoration: none; 
-            font-weight: 600; 
-            font-size: 14px; 
+            font-weight: 700; 
+            font-size: 12px; 
             letter-spacing: 2px; 
-            text-transform: uppercase; 
-            transition: 0.3s; 
-            border-radius: 40px; /* Bucu bulat sikit */
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: 0.3s;
         }
-        .btn-main:hover { 
-            background: #333; 
-            transform: translateY(-3px) scale(1.03); 
-        }
+        .btn-main:hover { transform: scale(1.05); background: #eee; }
 
-        /* --- Footer Section --- */
+        /* --- Footer Bawah (Contact & Kata-kata) --- */
         footer {
-            margin-top: auto; /* Pastikan footer sentiasa kat bawah skrin bila skrol */
-            background: var(--brand);
-            color: var(--light);
-            padding: 50px 5%;
-            font-size: 13px;
-            z-index: 10;
+            background: black;
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
         }
-
-        .footer-content {
+        .footer-grid {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
         }
+        .footer-left { text-align: left; flex: 1; min-width: 280px; }
+        .footer-right { text-align: right; flex: 1; min-width: 200px; }
+        
+        .footer-left h2 { font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; }
+        .footer-left p { color: #888; font-style: italic; font-size: 14px; }
+        
+        .footer-right p { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-right h3 { font-size: 20px; margin-top: 5px; }
+        
+        .footer-socials { margin-top: 20px; display: flex; justify-content: flex-end; gap: 20px; }
+        .footer-socials a { color: white; font-size: 20px; transition: 0.3s; }
+        .footer-socials a:hover { opacity: 0.6; }
 
-        .footer-logo-area { flex: 1; min-width: 250px; }
-        .footer-logo { font-weight: 800; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: white; margin-bottom: 10px; }
-        .footer-tagline { color: #ccc; font-weight: 300; }
-
-        .footer-contact { flex: 1; min-width: 200px; text-align: right; }
-        .footer-social-icons { margin-top: 15px; }
-        .footer-social-icons a { color: white; font-size: 18px; margin-left: 20px; text-decoration: none; transition: 0.3s; }
-        .footer-social-icons a:hover { color: #ccc; }
-
-        /* Mobile Friendly */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 40px; letter-spacing: -1px; }
-            .hero-content p { font-size: 14px; }
-            .btn-main { padding: 12px 30px; font-size: 12px; }
-            .footer-content { flex-direction: column; text-align: center; }
-            .footer-contact { text-align: center; }
-            .footer-social-icons a { margin: 0 10px; }
+            .footer-left, .footer-right { text-align: center; }
+            .footer-socials { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <header>
         <a href="index.html" class="logo">THE STAY</a>
         <div class="nav-right">
-            <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="order.html">ORDER</a>
             <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="order.html" style="border-bottom: 2px solid #000;">ORDER</a>
+            <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
-    </nav>
+    </header>
 
     <div class="slider-container">
         <div class="slide active">
@@ -185,54 +151,41 @@
         <div class="slide">
             <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=80">
         </div>
-        <div class="slide">
-            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=2000&q=80">
-        </div>
-
+        
         <div class="hero-content">
             <h1>ESSENTIAL<br>COMFORT.</h1>
-            <p>Nikmati penginapan eksklusif ala butik mewah di lokasi strategik.</p>
             <a href="order.html" class="btn-main">EXPLORE UNITS</a>
         </div>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo-area">
-                <div class="footer-logo">THE STAY EXCLUSIVE</div>
-                <p class="footer-tagline">"Ketenangan alam dalam keselesaan moden."</p>
+        <div class="footer-grid">
+            <div class="footer-left">
+                <h2>THE STAY EXCLUSIVE</h2>
+                <p>"Ketenangan alam dalam keselesaan moden."</p>
             </div>
             
-            <div class="footer-contact">
-                <p>CONTACT US:</p>
-                <p style="font-weight: 700; margin-top: 5px;">+60 13-684 1826</p>
-                
-                <div class="footer-social-icons">
-                    <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <div class="footer-right">
+                <p>Contact Us</p>
+                <h3>+60 13-684 1826</h3>
+                <div class="footer-socials">
                     <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/60136841826?text=Salam%20THE%20STAY%2C%20saya%20ada%20pertanyaan%20mengenai%20homestay." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/60136841826" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
-        
-        <p style="font-size: 10px; color: #aaa; text-align: center; margin-top: 40px; letter-spacing: 2px;">
-            &copy; 2026 THE STAY EXCLUSIVE. ALL RIGHTS RESERVED.
-        </p>
+        <p style="font-size: 10px; color: #444; letter-spacing: 2px;">© 2026 THE STAY EXCLUSIVE. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const slideInterval = 5000; // Tukar kepada 5 saat untuk feel relax sikit
-
-        function nextSlide() {
+        setInterval(() => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, slideInterval);
+        }, 5000);
     </script>
-
 </body>
 </html>
