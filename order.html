@@ -3,50 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Tempahan | THE STAY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>COLLECTION | THE STAY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root { --brand: #000000; --accent: #27ae60; --grey: #f9f9f9; --text-muted: #888; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: #fcfcfc; color: #1a1a1a; }
-        header { padding: 30px 5%; border-bottom: 1px solid #eee; background: white; text-align: center; }
-        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: white; border: 1px solid #eee; overflow: hidden; transition: 0.3s; text-decoration: none; color: inherit; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .card img { width: 100%; height: 250px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .status { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #27ae60; border: 1px solid #27ae60; padding: 2px 8px; display: inline-block; margin-bottom: 10px; }
-        .price { font-weight: 700; margin-top: 10px; display: block; }
+        body { background: #ffffff; color: var(--brand); }
+
+        /* Navigation Minimalist */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; background: white; z-index: 1000; }
+        .logo { font-weight: 800; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; color: black; border: 2px solid black; padding: 5px 10px; }
+        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--brand); font-size: 13px; font-weight: 600; text-transform: uppercase; }
+
+        /* Header Section */
+        .page-header { padding: 60px 5% 30px; text-align: center; }
+        .page-header h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+        .page-header p { color: var(--text-muted); font-size: 14px; }
+
+        /* Filter / Status Info */
+        .filter-bar { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+        /* Grid Collection */
+        .order-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding: 0 5% 100px; max-width: 1400px; margin: auto; }
+        .item-card { text-decoration: none; color: inherit; display: block; group; }
+        .img-container { width: 100%; aspect-ratio: 1/1; background: var(--grey); overflow: hidden; position: relative; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .item-card:hover img { transform: scale(1.05); }
+
+        /* Badge Status */
+        .badge { position: absolute; top: 15px; left: 15px; background: white; padding: 5px 12px; font-size: 10px; font-weight: 800; letter-spacing: 1px; }
+        .status-booked { color: #e74c3c; opacity: 0.8; }
+
+        .item-info { margin-top: 20px; border-top: 1px solid #f0f0f0; padding-top: 15px; }
+        .item-name { font-size: 16px; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
+        .item-meta { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-weight: 400; color: #444; }
+
+        /* Floating WhatsApp Button */
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: #000; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); text-decoration: none; z-index: 2000; transition: 0.3s; }
+        .wa-float:hover { transform: scale(1.1); background: #25d366; }
+
+        footer { padding: 50px 5%; border-top: 1px solid #eee; text-align: center; background: #fafafa; }
+        .social-icons a { font-size: 20px; color: black; margin: 0 15px; transition: 0.3s; }
+        .social-icons a:hover { opacity: 0.5; }
     </style>
 </head>
 <body>
-    <header>
-        <h1 style="letter-spacing: 3px;">PILIH UNIT ANDA</h1>
-        <p style="font-size: 13px; color: #888; margin-top: 5px;">Klik pada bilik untuk maklumat lanjut & tempahan.</p>
-    </header>
 
-    <div class="container">
-        <div class="grid">
-            <a href="detail-room1.html" class="card">
-                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80">
-                <div class="card-body">
-                    <div class="status">AVAILABLE</div>
-                    <h3>THE LOFT SUITE</h3>
-                    <p style="font-size: 13px; color: #666;">Bangi • 3 Bilik • Pool View</p>
-                    <span class="price">RM 250 / malam</span>
+    <nav>
+        <a href="index.html" class="logo">THE STAY</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank">Instagram</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>ALL UNITS.</h1>
+        <p>Pilih ruang yang sesuai dengan jiwa anda.</p>
+    </div>
+
+    <div class="filter-bar">
+        <span><span class="dot" style="background:var(--accent)"></span>Available</span>
+        <span><span class="dot" style="background:#e74c3c"></span>Booked</span>
+    </div>
+
+    <div class="order-grid">
+        
+        <a href="detail-room1.html" class="item-card">
+            <div class="img-container">
+                <div class="badge" style="color:var(--accent)">AVAILABLE</div>
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80" alt="Unit 1">
+            </div>
+            <div class="item-info">
+                <p class="item-name">THE LOFT SUITE</p>
+                <div class="item-meta">
+                    <p style="font-size: 12px; color: #777;">BANGI, SELANGOR</p>
+                    <p class="price">RM 250 / night</p>
                 </div>
-            </a>
+            </div>
+        </a>
 
-            <div class="card" style="opacity: 0.6; cursor: not-allowed;">
-                <img src="https://images.unsplash.com/photo-1556911223-e45243376f67?auto=format&fit=crop&w=600&q=80">
-                <div class="card-body">
-                    <div class="status" style="color: #e74c3c; border-color: #e74c3c;">FULLY BOOKED</div>
-                    <h3>GARDEN VILLA</h3>
-                    <p style="font-size: 13px; color: #666;">Kajang • 4 Bilik • Private Garden</p>
-                    <span class="price">RM 400 / malam</span>
+        <div class="item-card" style="cursor: not-allowed;">
+            <div class="img-container" style="filter: grayscale(1);">
+                <div class="badge status-booked">FULLY BOOKED</div>
+                <img src="https://images.unsplash.com/photo-1556911223-e45243376f67?auto=format&fit=crop&w=800&q=80" alt="Unit 2">
+            </div>
+            <div class="item-info">
+                <p class="item-name">GARDEN VILLA</p>
+                <div class="item-meta">
+                    <p style="font-size: 12px; color: #777;">KAJANG, SELANGOR</p>
+                    <p class="price">RM 400 / night</p>
                 </div>
             </div>
         </div>
+
+        <a href="#" class="item-card">
+            <div class="img-container">
+                <div class="badge" style="color:var(--accent)">AVAILABLE</div>
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" alt="Unit 3">
+            </div>
+            <div class="item-info">
+                <p class="item-name">STUDIO APARTMENT</p>
+                <div class="item-meta">
+                    <p style="font-size: 12px; color: #777;">CYBERJAYA</p>
+                    <p class="price">RM 180 / night</p>
+                </div>
+            </div>
+        </a>
+
     </div>
+
+    <a href="https://wa.me/60136841826?text=Salam%20THE%20STAY%2C%20saya%20nak%20tanya%20pasal%20unit%20homestay." class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="social-icons" style="margin-bottom: 20px;">
+            <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="font-size: 11px; letter-spacing: 2px; color: #aaa;">&copy; 2026 THE STAY EXCLUSIVE. ALL RIGHTS RESERVED.</p>
+    </footer>
+
 </body>
 </html>
