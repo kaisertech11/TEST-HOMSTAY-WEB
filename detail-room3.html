@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>STUDIO APARTMENT | THE STAY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* [COPY CSS DARI UNIT 2 DI ATAS] */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: #fff; overflow-x: hidden; }
         .container { display: flex; flex-direction: row; height: 100vh; }
@@ -15,7 +13,7 @@
         .image-side img { width: 100%; display: block; scroll-snap-align: start; margin-bottom: 2px; }
         .content-side { flex: 0.8; padding: 60px 5%; overflow-y: auto; }
         .nav-back { margin-bottom: 30px; }
-        .nav-back a { text-decoration: none; color: #000; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+        .nav-back a { text-decoration: none; color: #000; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .unit-title { font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
         .price-tag { font-size: 24px; margin: 20px 0; font-weight: 300; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .specs-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
@@ -24,7 +22,13 @@
         label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
         input[type="date"] { width: 100%; padding: 15px; border: none; margin-bottom: 20px; font-size: 16px; background: #222; color: #fff; }
         .btn-book { display: block; width: 100%; background: #fff; color: #000; text-align: center; padding: 18px; text-decoration: none; font-weight: 800; letter-spacing: 1px; }
-        @media (max-width: 850px) { .container { flex-direction: column; height: auto; } .image-side { height: 50vh; flex: none; width: 100%; } .content-side { flex: none; width: 100%; padding: 40px 8%; } .unit-title { font-size: 32px; } }
+
+        @media (max-width: 850px) {
+            .container { flex-direction: column; height: auto; }
+            .image-side { height: 50vh; flex: none; width: 100%; }
+            .content-side { flex: none; width: 100%; padding: 40px 8%; }
+            .unit-title { font-size: 32px; }
+        }
     </style>
 </head>
 <body>
@@ -32,32 +36,29 @@
         <div class="image-side">
             <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80">
             <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80">
-            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80">
-            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1000&q=80">
+            <img src="https://images.unsplash.com/photo-1536376074432-8d2a3d7f3dc3?auto=format&fit=crop&w=1000&q=80">
+            <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1000&q=80">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80">
         </div>
         <div class="content-side">
-            <div class="nav-back"><a href="order.html">← BACK TO COLLECTION</a></div>
+            <div class="nav-back"><a href="order.html">← BACK</a></div>
             <h1 class="unit-title">STUDIO APARTMENT</h1>
             <p class="price-tag">RM 180 <span style="font-size: 14px; color: #888;">/ night</span></p>
             <div class="specs">
                 <div class="specs-row"><span>Location</span> <span>Cyberjaya</span></div>
                 <div class="specs-row"><span>Type</span> <span>1 Bedroom / 1 Bath</span></div>
-                <div class="specs-row"><span>Feature</span> <span>High Speed WiFi & Netflix</span></div>
+                <div class="specs-row"><span>Feature</span> <span>Netflix & High-Speed WiFi</span></div>
             </div>
             <div class="booking-card">
-                <label>Select Your Date</label>
-                <input type="date" id="bookDate">
-                <a href="#" onclick="confirmBooking()" class="btn-book">WHATSAPP TO BOOK</a>
-            </div>
-            <div style="margin-top: 40px; font-size: 14px; color: #666; line-height: 1.8;">
-                Sesuai untuk "solo traveler" atau pasangan. Rekaan moden di tengah pusat teknologi Cyberjaya. Sangat selesa untuk "staycation" singkat.
+                <label>Pilih Tarikh</label>
+                <input type="date" id="bookDate3">
+                <a href="#" onclick="confirmBooking()" class="btn-book">BOOK VIA WHATSAPP</a>
             </div>
         </div>
     </div>
     <script>
         function confirmBooking() {
-            const date = document.getElementById('bookDate').value;
+            const date = document.getElementById('bookDate3').value;
             if(!date) { alert('Sila pilih tarikh bos!'); return; }
             window.open(`https://wa.me/60136841826?text=Salam%20THE%20STAY,%20saya%20nak%20booking%20STUDIO%20APARTMENT%20untuk%20tarikh%20${date}.`, '_blank');
         }
