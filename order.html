@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Tempahan | THE STAY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #fcfcfc; color: #1a1a1a; }
+        header { padding: 30px 5%; border-bottom: 1px solid #eee; background: white; text-align: center; }
+        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; border: 1px solid #eee; overflow: hidden; transition: 0.3s; text-decoration: none; color: inherit; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .status { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #27ae60; border: 1px solid #27ae60; padding: 2px 8px; display: inline-block; margin-bottom: 10px; }
+        .price { font-weight: 700; margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="letter-spacing: 3px;">PILIH UNIT ANDA</h1>
+        <p style="font-size: 13px; color: #888; margin-top: 5px;">Klik pada bilik untuk maklumat lanjut & tempahan.</p>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <a href="detail-room1.html" class="card">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80">
+                <div class="card-body">
+                    <div class="status">AVAILABLE</div>
+                    <h3>THE LOFT SUITE</h3>
+                    <p style="font-size: 13px; color: #666;">Bangi • 3 Bilik • Pool View</p>
+                    <span class="price">RM 250 / malam</span>
+                </div>
+            </a>
+
+            <div class="card" style="opacity: 0.6; cursor: not-allowed;">
+                <img src="https://images.unsplash.com/photo-1556911223-e45243376f67?auto=format&fit=crop&w=600&q=80">
+                <div class="card-body">
+                    <div class="status" style="color: #e74c3c; border-color: #e74c3c;">FULLY BOOKED</div>
+                    <h3>GARDEN VILLA</h3>
+                    <p style="font-size: 13px; color: #666;">Kajang • 4 Bilik • Private Garden</p>
+                    <span class="price">RM 400 / malam</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
