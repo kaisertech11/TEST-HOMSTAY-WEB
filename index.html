@@ -7,64 +7,168 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --brand: #000000; --accent: #27ae60; --light: #ffffff; --grey: #f5f5f5; }
+        :root { --brand: #000000; --light: #ffffff; --grey: #f5f5f5; --text-muted: #888; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--light); color: var(--brand); overflow-x: hidden; }
+        body { background: var(--light); color: var(--brand); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* Navigation Style Uniqlo */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; background: rgba(255,255,255,0.95); z-index: 1000; backdrop-filter: blur(10px); }
-        .logo { font-weight: 800; font-size: 22px; letter-spacing: 4px; text-transform: uppercase; border: 2px solid var(--brand); padding: 5px 15px; }
-        .nav-socials a { margin-left: 20px; color: var(--brand); font-size: 18px; transition: 0.3s; text-decoration: none; }
-        .nav-socials a:hover { opacity: 0.5; }
+        /* Navigation Style Uniqlo (Sama) */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; background: rgba(255,255,255,0.95); z-index: 1000; backdrop-filter: blur(10px); }
+        .logo { font-weight: 800; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; border: 2px solid var(--brand); padding: 5px 15px; }
+        .nav-right a { margin-left: 15px; color: var(--brand); font-size: 16px; transition: 0.3s; text-decoration: none; }
+        .nav-right a:hover { opacity: 0.5; }
 
-        /* Hero Section */
-        .hero { height: 85vh; width: 100%; position: relative; background: var(--grey); overflow: hidden; }
-        .hero-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
-        .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%; }
-        .hero-content h1 { font-size: clamp(40px, 8vw, 90px); font-weight: 800; letter-spacing: -2px; line-height: 0.9; margin-bottom: 20px; }
-        .btn-main { display: inline-block; padding: 15px 40px; background: var(--brand); color: white; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
-        .btn-main:hover { background: #333; transform: scale(1.05); }
+        /* --- Auto-Slider Section --- */
+        .slider-container {
+            width: 100%;
+            height: 60vh; /* Kita kecikkan sikit tinggi dia supaya tak 'makan' satu skrin */
+            position: relative;
+            overflow: hidden;
+            background: var(--grey);
+        }
 
-        /* Featured Section */
-        .section-label { padding: 60px 5% 20px; font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #888; }
-        .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; padding: 0 5% 100px; }
-        .unit-card { text-decoration: none; color: inherit; transition: 0.4s; }
-        .unit-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
-        .unit-info { padding: 15px 0; border-top: 1px solid #eee; margin-top: 10px; display: flex; justify-content: space-between; }
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0; /* Mula-mula tak nampak */
+            transition: opacity 1.5s ease-in-out; /* Kesan fade lembut */
+            z-index: 1;
+        }
+
+        /* Slide yang aktif akan nampak */
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Pastikan gambar tak herot */
+        }
+
+        /* Hero Text atas Slider */
+        .hero-content {
+            position: absolute;
+            bottom: 40px;
+            left: 5%;
+            z-index: 10;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero-content h1 { font-size: clamp(30px, 5vw, 60px); font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 10px; }
+        .btn-main { display: inline-block; padding: 12px 30px; background: var(--light); color: black; text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; margin-top: 10px; }
+        .btn-main:hover { background: #eee; transform: translateY(-2px); }
+
+        /* --- Footer Section --- */
+        footer {
+            margin-top: auto; /* Pastikan footer sentiasa kat bawah skrin */
+            background: var(--brand);
+            color: var(--light);
+            padding: 50px 5%;
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo-area { flex: 1; min-width: 250px; }
+        .footer-logo { font-weight: 800; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-tagline { color: #ccc; font-weight: 300; }
+
+        .footer-contact { flex: 1; min-width: 200px; text-align: right; }
+        .footer-social-icons { margin-top: 15px; }
+        .footer-social-icons a { color: white; font-size: 18px; margin-left: 20px; text-decoration: none; transition: 0.3s; }
+        .footer-social-icons a:hover { color: #ccc; }
+
+        /* Mobile Friendly for Slider & Footer */
+        @media (max-width: 768px) {
+            .slider-container { height: 40vh; }
+            .hero-content { bottom: 20px; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-contact { text-align: center; }
+            .footer-social-icons a { margin: 0 10px; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">THE STAY</div>
-        <div class="nav-socials">
+        <div class="nav-right">
             <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="order.html" style="font-size: 14px; font-weight: 800; border-bottom: 2px solid #000; margin-left: 30px;">ORDER</a>
+            <a href="order.html" style="font-size: 13px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000;">ORDER</a>
         </div>
     </nav>
 
-    <div class="hero">
-        <img class="hero-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1500&q=80">
+    <div class="slider-container">
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1500&q=80">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1500&q=80">
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1500&q=80">
+        </div>
+
         <div class="hero-content">
             <h1>ESSENTIAL<br>COMFORT.</h1>
-            <a href="order.html" class="btn-main">View Collection</a>
+            <p style="font-weight: 300; max-width: 400px; color: #ddd;">Nikmati penginap eksklusif ala butik mewah di lokasi strategik.</p>
+            <a href="order.html" class="btn-main">Explore Units</a>
         </div>
     </div>
 
-    <div class="section-label">Selected Units</div>
-    <div class="featured-grid">
-        <a href="detail-room1.html" class="unit-card">
-            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80">
-            <div class="unit-info">
-                <div>
-                    <p style="font-weight: 700;">THE LOFT SUITE</p>
-                    <p style="font-size: 12px; color: #777;">BANGI, SELANGOR</p>
-                </div>
-                <p style="font-weight: 700;">RM 250</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo-area">
+                <div class="footer-logo">THE STAY EXCLUSIVE</div>
+                <p class="footer-tagline">"Ketenangan alam dalam keselesaan moden."</p>
             </div>
-        </a>
-    </div>
+            
+            <div class="footer-contact">
+                <p>CONTACT US:</p>
+                <p style="font-weight: 700; margin-top: 5px;">+60 13-684 1826</p>
+                
+                <div class="footer-social-icons">
+                    <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/60136841826?text=Salam%20THE%20STAY%2C%20saya%20ada%20pertanyaan%20mengenai%20homestay." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <p style="font-size: 10px; color: #aaa; text-align: center; margin-top: 40px; letter-spacing: 2px;">
+            &copy; 2026 THE STAY EXCLUSIVE. ALL RIGHTS RESERVED.
+        </p>
+    </footer>
+
+    <script>
+        // Ambil semua element slide
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 4000; // Masa tukar slide (dalam milisaat - 4 saat)
+
+        function nextSlide() {
+            // Hilangkan class active dari slide sekarang
+            slides[currentSlide].classList.remove('active');
+            // Kira index slide seterusnya
+            currentSlide = (currentSlide + 1) % slides.length;
+            // Tambah class active pada slide seterusnya
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Jalankan fungsi nextSlide secara automatik setiap masa interval
+        setInterval(nextSlide, slideInterval);
+    </script>
 
 </body>
 </html>
