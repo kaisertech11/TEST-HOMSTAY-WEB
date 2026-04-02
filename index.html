@@ -3,189 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE STAY | Exclusive Living</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Kaiser Stay | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --brand: #000000; --light: #ffffff; --grey: #f5f5f5; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { background: var(--light); color: var(--brand); overflow-x: hidden; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background: #f4f7f6; color: #333; line-height: 1.6; }
 
-        /* --- Header (Footer Atas) --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: white;
-            border-bottom: 1px solid #eee;
-        }
-        .logo { 
-            font-weight: 800; 
-            font-size: 18px; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            border: 2px solid black;
-            padding: 5px 12px;
-            text-decoration: none;
-            color: black;
-        }
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        .nav-right a {
-            text-decoration: none;
-            color: black;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        .nav-right a:hover { opacity: 0.6; }
-        .nav-right i { font-size: 18px; }
+        header { background: #fff; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-weight: 600; font-size: 1.2rem; color: #27ae60; }
 
-        /* --- Slider Section (Hampir Full Screen) --- */
-        .slider-container {
-            width: 100%;
-            height: 85vh; /* 85% skrin supaya nampak sikit footer bawah bila skrol */
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
-        .slide {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0; left: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
-        .slide.active { opacity: 1; z-index: 2; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
 
-        /* Teks Tengah Atas Gambar */
-        .hero-content {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            text-align: center;
-            color: white;
-            width: 90%;
-        }
-        .hero-content h1 { 
-            font-size: clamp(40px, 8vw, 80px); 
-            font-weight: 800; 
-            letter-spacing: -2px; 
-            line-height: 0.9; 
-            margin-bottom: 20px;
-        }
-        .btn-main { 
-            display: inline-block; 
-            padding: 15px 35px; 
-            background: white; 
-            color: black; 
-            text-decoration: none; 
-            font-weight: 700; 
-            font-size: 12px; 
-            letter-spacing: 2px; 
-            text-transform: uppercase;
-            border-radius: 50px;
-            transition: 0.3s;
-        }
-        .btn-main:hover { transform: scale(1.05); background: #eee; }
+        /* Navigation Bilik */
+        .room-nav { display: flex; justify-content: space-around; margin-bottom: 20px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .room-btn { padding: 15px; flex: 1; border: none; background: none; cursor: pointer; transition: 0.3s; font-weight: 600; }
+        .room-btn.active { background: #27ae60; color: white; }
 
-        /* --- Footer Bawah (Contact & Kata-kata) --- */
-        footer {
-            background: black;
-            color: white;
-            padding: 60px 5%;
-            text-align: center;
-        }
-        .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
-        }
-        .footer-left { text-align: left; flex: 1; min-width: 280px; }
-        .footer-right { text-align: right; flex: 1; min-width: 200px; }
-        
-        .footer-left h2 { font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; }
-        .footer-left p { color: #888; font-style: italic; font-size: 14px; }
-        
-        .footer-right p { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-        .footer-right h3 { font-size: 20px; margin-top: 5px; }
-        
-        .footer-socials { margin-top: 20px; display: flex; justify-content: flex-end; gap: 20px; }
-        .footer-socials a { color: white; font-size: 20px; transition: 0.3s; }
-        .footer-socials a:hover { opacity: 0.6; }
+        /* Image Gallery */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .gallery img { width: 100%; border-radius: 10px; object-fit: cover; height: 200px; background: #ddd; }
 
-        @media (max-width: 768px) {
-            .footer-left, .footer-right { text-align: center; }
-            .footer-socials { justify-content: center; }
+        .info-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h2 { color: #2c3e50; margin-bottom: 10px; }
+        .price { font-size: 1.5rem; color: #e74c3c; font-weight: bold; margin-bottom: 10px; }
+
+        /* Mobile Friendly Button */
+        .btn-booking { 
+            display: block; width: 100%; background: #27ae60; color: white; text-align: center; 
+            padding: 18px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .gallery { grid-template-columns: 1fr; } /* Satu gambar satu baris kat fon */
+            .logo { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo">THE STAY</a>
-        <div class="nav-right">
-            <a href="order.html">ORDER</a>
-            <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
-        </div>
-    </header>
+<header>
+    <div class="logo">KAISER STAY OFFICIAL</div>
+</header>
 
-    <div class="slider-container">
-        <div class="slide active">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80">
-        </div>
-        <div class="slide">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=80">
-        </div>
-        
-        <div class="hero-content">
-            <h1>ESSENTIAL<br>COMFORT.</h1>
-            <a href="order.html" class="btn-main">EXPLORE UNITS</a>
-        </div>
+<div class="container">
+    <div class="room-nav">
+        <button class="room-btn active" onclick="changeRoom(1, this)">Bilik 1</button>
+        <button class="room-btn" onclick="changeRoom(2, this)">Bilik 2</button>
+        <button class="room-btn" onclick="changeRoom(3, this)">Bilik 3</button>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-left">
-                <h2>THE STAY EXCLUSIVE</h2>
-                <p>"Ketenangan alam dalam keselesaan moden."</p>
-            </div>
-            
-            <div class="footer-right">
-                <p>Contact Us</p>
-                <h3>+60 13-684 1826</h3>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://wa.me/60136841826" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-        <p style="font-size: 10px; color: #444; letter-spacing: 2px;">© 2026 THE STAY EXCLUSIVE. ALL RIGHTS RESERVED.</p>
-    </footer>
+    <div class="info-card">
+        <h2 id="room-name">Homestay Bilik 1</h2>
+        <p class="price" id="room-price">RM 150 / malam</p>
+        <p id="room-desc">Sesuai untuk keluarga kecil. Dilengkapi dengan aircond, WiFi laju, dan katil Queen yang empuk.</p>
+    </div>
 
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
-    </script>
+    <div class="gallery" id="room-gallery">
+        <img src="https://via.placeholder.com/400x300?text=Bilik+1+Utama" alt="Bilik 1">
+        <img src="https://via.placeholder.com/400x300?text=Bilik+1+Tandas" alt="Bilik 1">
+        <img src="https://via.placeholder.com/400x300?text=Bilik+1+Dapur" alt="Bilik 1">
+    </div>
+
+    <a href="#" id="wa-link" class="btn-booking">Tempah via WhatsApp</a>
+</div>
+
+<script>
+    const rooms = {
+        1: {
+            name: "Homestay Bilik 1 (Deluxe)",
+            price: "RM 150",
+            desc: "Bilik luas dengan pemandangan sawah padi. Ada 1 Katil Queen, Aircond, dan Smart TV.",
+            imgs: ["img1_1.jpg", "img1_2.jpg", "img1_3.jpg"], // Ganti dengan nama file gambar bos
+            wa: "Salam Kaiser Stay, saya nak booking Bilik 1."
+        },
+        2: {
+            name: "Homestay Bilik 2 (Family)",
+            price: "RM 250",
+            desc: "Sangat luas untuk 6-8 orang. Ada 2 Katil King, Dapur memasak, dan Kolam mini.",
+            imgs: ["img2_1.jpg", "img2_2.jpg", "img2_3.jpg"],
+            wa: "Salam Kaiser Stay, saya nak booking Bilik 2."
+        },
+        3: {
+            name: "Homestay Bilik 3 (Budget)",
+            price: "RM 80",
+            desc: "Sesuai untuk backpackers. 1 Katil Single, Kipas, dan WiFi percuma. Sangat jimat!",
+            imgs: ["img3_1.jpg", "img3_2.jpg", "img3_3.jpg"],
+            wa: "Salam Kaiser Stay, saya nak booking Bilik 3."
+        }
+    };
+
+    function changeRoom(id, btn) {
+        // Tukar butang aktif
+        document.querySelectorAll('.room-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Kemaskini Info
+        const room = rooms[id];
+        document.getElementById('room-name').innerText = room.name;
+        document.getElementById('room-price').innerText = room.price + " / malam";
+        document.getElementById('room-desc').innerText = room.desc;
+
+        // Kemaskini Link WhatsApp (Ganti nombor fon bos)
+        const phone = "60172883237";
+        document.getElementById('wa-link').href = `https://wa.me/${phone}?text=${encodeURIComponent(room.wa)}`;
+
+        // Kemaskini Galeri (Contoh placeholder)
+        const gallery = document.getElementById('room-gallery');
+        gallery.innerHTML = `
+            <img src="https://via.placeholder.com/400x300?text=${room.name}+1" alt="img">
+            <img src="https://via.placeholder.com/400x300?text=${room.name}+2" alt="img">
+            <img src="https://via.placeholder.com/400x300?text=${room.name}+3" alt="img">
+        `;
+    }
+
+    // Set awal-awal masa load
+    window.onload = () => changeRoom(1, document.querySelector('.room-btn'));
+</script>
+
 </body>
 </html>
