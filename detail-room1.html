@@ -1,0 +1,51 @@
+<style>
+    /* Tambahan Style untuk Detail */
+    .detail-container { display: flex; flex-wrap: wrap; padding: 50px 5%; gap: 50px; }
+    .detail-images { flex: 1; min-width: 300px; }
+    .detail-images img { width: 100%; margin-bottom: 10px; }
+    .detail-content { flex: 1; min-width: 300px; }
+    .price { font-size: 24px; font-weight: 600; margin: 20px 0; }
+    .specs { border-top: 1px solid #eee; padding-top: 20px; }
+    .specs-item { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; border-bottom: 1px dotted #eee; }
+    .btn-book { display: block; width: 100%; background: #1a1a1a; color: white; text-align: center; padding: 20px; text-decoration: none; margin-top: 30px; font-weight: 600; }
+</style>
+
+<div class="detail-container">
+    <div class="detail-images">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80">
+    </div>
+    
+    <div class="detail-content">
+        <h1 class="logo" style="font-size: 32px;">THE LOFT SUITE</h1>
+        <p class="price">RM 250 / MALAM</p>
+        
+        <div class="specs">
+            <div class="specs-item"><span>Luas Rumah</span> <span>1,200 sqft</span></div>
+            <div class="specs-item"><span>Bilik</span> <span>3 Bilik Tidur, 2 Bilik Air</span></div>
+            <div class="specs-item"><span>Lokasi</span> <span>Seksyen 7, Bangi</span></div>
+            <div class="specs-item"><span>Berdekatan</span> <span>Evo Mall, IOI City Mall</span></div>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 14px; color: #555;">
+            Nikmati suasana mewah dengan hiasan dalaman minimalist. Sangat sesuai untuk famili kecil yang ingin shopping di Bangi.
+        </p>
+
+        <div style="margin-top: 30px;">
+            <label style="font-size: 12px; font-weight: 600;">PILIH TARIKH:</label>
+            <input type="date" id="dateInput" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc;">
+        </div>
+
+        <a href="#" id="waBtn" class="btn-book">BOOK SEKARANG VIA WHATSAPP</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('waBtn').onclick = function() {
+        let date = document.getElementById('dateInput').value;
+        if(!date) { alert('Sila pilih tarikh dulu bos!'); return false; }
+        
+        let mesej = `Salam, saya berminat nak book THE LOFT SUITE pada tarikh ${date}. Adakah masih kosong?`;
+        window.open(`https://wa.me/60172883237?text=${encodeURIComponent(mesej)}`);
+    }
+</script>
