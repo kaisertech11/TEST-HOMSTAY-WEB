@@ -2,26 +2,66 @@
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>THE LOFT SUITE | THE STAY</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        .container { display: flex; flex-wrap: wrap; height: 100vh; }
-        .image-side { flex: 1.2; background: #eee; height: 100%; overflow-y: scroll; scroll-snap-type: y mandatory; }
-        .image-side img { width: 100%; display: block; scroll-snap-align: start; }
-        .content-side { flex: 0.8; padding: 60px 5%; overflow-y: auto; background: white; }
+        body { background: #fff; overflow-x: hidden; }
+
+        .container { display: flex; flex-direction: row; height: 100vh; }
+
+        /* Gallery Side - Scrollable */
+        .image-side { 
+            flex: 1.2; 
+            height: 100vh; 
+            overflow-y: auto; 
+            scroll-snap-type: y mandatory;
+            background: #f5f5f5;
+        }
+        .image-side img { 
+            width: 100%; 
+            display: block; 
+            scroll-snap-align: start;
+            margin-bottom: 2px;
+        }
+
+        /* Content Side */
+        .content-side { 
+            flex: 0.8; 
+            padding: 60px 5%; 
+            overflow-y: auto; 
+        }
         
-        .breadcrumb { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 20px; }
-        .price-tag { font-size: 28px; font-weight: 300; margin: 30px 0; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        .specs { margin-bottom: 40px; }
-        .specs-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
+        .nav-back { margin-bottom: 30px; }
+        .nav-back a { text-decoration: none; color: #000; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
+        .unit-title { font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+        .price-tag { font-size: 24px; margin: 20px 0; font-weight: 300; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         
-        .book-box { background: #f9f9f9; padding: 30px; margin-top: 40px; border-radius: 4px; }
-        input[type="date"] { width: 100%; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px; font-size: 16px; }
-        .btn-whatsapp { display: block; width: 100%; background: #000; color: #fff; text-align: center; padding: 20px; text-decoration: none; font-weight: 700; letter-spacing: 2px; }
-        
-        @media (max-width: 800px) { .container { flex-direction: column; } .image-side { height: 50vh; flex: none; } .content-side { flex: none; width: 100%; } }
+        .specs-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
+        .specs-row span:first-child { color: #888; text-transform: uppercase; font-size: 11px; font-weight: 700; }
+
+        .booking-card { background: #000; color: #fff; padding: 30px; margin-top: 40px; }
+        label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
+        input[type="date"] { 
+            width: 100%; padding: 15px; border: none; margin-bottom: 20px; font-size: 16px; 
+            background: #222; color: #fff;
+        }
+        .btn-book { 
+            display: block; width: 100%; background: #fff; color: #000; text-align: center; 
+            padding: 18px; text-decoration: none; font-weight: 800; letter-spacing: 1px; 
+            transition: 0.3s;
+        }
+
+        /* RESPONSIVE FIX UNTUK PHONE */
+        @media (max-width: 850px) {
+            .container { flex-direction: column; height: auto; }
+            .image-side { height: 50vh; flex: none; width: 100%; }
+            .content-side { flex: none; width: 100%; padding: 40px 8%; }
+            .unit-title { font-size: 32px; }
+        }
     </style>
 </head>
 <body>
@@ -31,40 +71,40 @@
             <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80">
             <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1000&q=80">
             <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80">
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=80">
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80">
         </div>
 
         <div class="content-side">
-            <div class="breadcrumb">Homestay / Selangor / Unit 01</div>
-            <h1 style="font-size: 42px; font-weight: 700; letter-spacing: -1px;">THE LOFT SUITE</h1>
-            <p class="price-tag">RM 250 <span style="font-size: 14px; color: #888;">/ per night</span></p>
+            <div class="nav-back"><a href="order.html">← BACK TO COLLECTION</a></div>
+            
+            <h1 class="unit-title">THE LOFT SUITE</h1>
+            <p class="price-tag">RM 250 <span style="font-size: 14px; color: #888;">/ night</span></p>
 
             <div class="specs">
-                <div class="specs-row"><span>Area</span> <span>Bangi, Selangor</span></div>
-                <div class="specs-row"><span>Size</span> <span>1,200 sqft (3 Bedrooms)</span></div>
-                <div class="specs-row"><span>Nearby</span> <span>Evo Mall, IOI City Mall, UKM</span></div>
+                <div class="specs-row"><span>Location</span> <span>Bangi, Selangor</span></div>
+                <div class="specs-row"><span>Type</span> <span>3 Bedrooms / 2 Baths</span></div>
+                <div class="specs-row"><span>Feature</span> <span>Pool View & WiFi</span></div>
             </div>
 
-            <div class="book-box">
-                <p style="font-size: 12px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">Check Availability</p>
+            <div class="booking-card">
+                <label>Select Your Date</label>
                 <input type="date" id="bookDate">
-                <a href="#" onclick="sendWA()" class="btn-whatsapp">BOOK NOW</a>
+                <a href="#" onclick="confirmBooking()" class="btn-book">WHATSAPP TO BOOK</a>
             </div>
             
-            <p style="margin-top: 30px; font-size: 14px; color: #666; line-height: 1.8;">
-                Minimalist living in the heart of Bangi. Fully air-conditioned, high-speed WiFi, and 2 private parkings.
-            </p>
+            <div style="margin-top: 40px; font-size: 14px; color: #666; line-height: 1.8;">
+                Penginapan yang tenang dengan rekaan dalaman minimalis. Sesuai untuk keluarga kecil atau percutian hujung minggu. Berdekatan dengan pusat membeli-belah dan kedai makan viral.
+            </div>
         </div>
     </div>
 
     <script>
-        function sendWA() {
+        function confirmBooking() {
             const date = document.getElementById('bookDate').value;
-            if(!date) { alert('Sila pilih tarikh dulu bos!'); return; }
-            
-            const phone = "60136841826";
-            const message = `Salam THE STAY, saya berminat nak tempah THE LOFT SUITE untuk tarikh ${date}. Ada kosong lagi tak?`;
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            if(!date) { alert('Sila pilih tarikh bos!'); return; }
+            const message = `Salam THE STAY, saya nak booking THE LOFT SUITE untuk tarikh ${date}. Ada lagi?`;
+            window.open(`https://wa.me/60136841826?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
 </body>
