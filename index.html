@@ -9,18 +9,46 @@
     <style>
         :root { --brand: #000000; --light: #ffffff; --grey: #f5f5f5; --text-muted: #888; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--light); color: var(--brand); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Set body supaya skrin penuh */
+        body, html { height: 100%; width: 100%; background: var(--light); color: var(--brand); overflow-x: hidden; display: flex; flex-direction: column; }
 
-        /* Navigation Style Uniqlo (Sama) */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #eee; position: sticky; top: 0; background: rgba(255,255,255,0.95); z-index: 1000; backdrop-filter: blur(10px); }
-        .logo { font-weight: 800; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; border: 2px solid var(--brand); padding: 5px 15px; }
-        .nav-right a { margin-left: 15px; color: var(--brand); font-size: 16px; transition: 0.3s; text-decoration: none; }
+        /* --- Navigation Transparent --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 5%;
+            position: fixed; /* Navigasi terapung atas gambar */
+            top: 0;
+            width: 100%;
+            background: transparent; /* Telus */
+            z-index: 1000;
+            /* Kita tambah bayang sikit untuk pastikan tulisan nav nampak */
+            /* text-shadow: 0 1px 5px rgba(0,0,0,0.5); */
+        }
+        .logo { 
+            font-weight: 800; 
+            font-size: 18px; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            border: 2px solid var(--brand); /* Bingkai hitam untuk branded look */
+            background: white; /* Letak bg putih sikit untuk logo nampak */
+            padding: 5px 15px; 
+            text-decoration: none;
+            color: black;
+        }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-right a { color: var(--brand); font-size: 16px; transition: 0.3s; text-decoration: none; }
         .nav-right a:hover { opacity: 0.5; }
+        
+        /* Ikon Navigasi (Kalau tak nampak atas gambar, boleh tukar warna kat sini) */
+        .nav-right a .fab, .nav-right a .fas { color: black; }
 
-        /* --- Auto-Slider Section --- */
+        /* --- Auto-Slider FULL SCREEN --- */
         .slider-container {
             width: 100%;
-            height: 60vh; /* Kita kecikkan sikit tinggi dia supaya tak 'makan' satu skrin */
+            height: 100vh; /* 100% daripada tinggi skrin penuh */
             position: relative;
             overflow: hidden;
             background: var(--grey);
@@ -32,12 +60,11 @@
             position: absolute;
             top: 0;
             left: 0;
-            opacity: 0; /* Mula-mula tak nampak */
-            transition: opacity 1.5s ease-in-out; /* Kesan fade lembut */
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out; /* Fade lembut sikit lagi */
             z-index: 1;
         }
 
-        /* Slide yang aktif akan nampak */
         .slide.active {
             opacity: 1;
             z-index: 2;
@@ -49,26 +76,17 @@
             object-fit: cover; /* Pastikan gambar tak herot */
         }
 
-        /* Hero Text atas Slider */
-        .hero-content {
-            position: absolute;
-            bottom: 40px;
-            left: 5%;
-            z-index: 10;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .hero-content h1 { font-size: clamp(30px, 5vw, 60px); font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 10px; }
-        .btn-main { display: inline-block; padding: 12px 30px; background: var(--light); color: black; text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; margin-top: 10px; }
-        .btn-main:hover { background: #eee; transform: translateY(-2px); }
+        /* Kita buang Hero Content Teks yang kat tengah-tengah tu */
+        /* .hero-content { ... } -> Dah dibuang */
 
         /* --- Footer Section --- */
         footer {
-            margin-top: auto; /* Pastikan footer sentiasa kat bawah skrin */
+            margin-top: auto; /* Pastikan footer sentiasa kat bawah bila skrol */
             background: var(--brand);
             color: var(--light);
             padding: 50px 5%;
             font-size: 13px;
+            z-index: 10; /* Biar dia muncul atas gambar kalau ada glitch */
         }
 
         .footer-content {
@@ -88,10 +106,9 @@
         .footer-social-icons a { color: white; font-size: 18px; margin-left: 20px; text-decoration: none; transition: 0.3s; }
         .footer-social-icons a:hover { color: #ccc; }
 
-        /* Mobile Friendly for Slider & Footer */
+        /* Mobile Friendly */
         @media (max-width: 768px) {
-            .slider-container { height: 40vh; }
-            .hero-content { bottom: 20px; }
+            .slider-container { height: 80vh; /* Pada mobile kita kurangkan sikit full screen */ }
             .footer-content { flex-direction: column; text-align: center; }
             .footer-contact { text-align: center; }
             .footer-social-icons a { margin: 0 10px; }
@@ -101,29 +118,23 @@
 <body>
 
     <nav>
-        <div class="logo">THE STAY</div>
+        <a href="index.html" class="logo">THE STAY</a>
         <div class="nav-right">
             <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="order.html" style="font-size: 13px; font-weight: 800; text-transform: uppercase; border-bottom: 2px solid #000;">ORDER</a>
+            <a href="order.html" style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: black; border-bottom: 2px solid #000;">ORDER</a>
         </div>
     </nav>
 
     <div class="slider-container">
         <div class="slide active">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1500&q=80">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80">
         </div>
         <div class="slide">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1500&q=80">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=80">
         </div>
         <div class="slide">
-            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1500&q=80">
-        </div>
-
-        <div class="hero-content">
-            <h1>ESSENTIAL<br>COMFORT.</h1>
-            <p style="font-weight: 300; max-width: 400px; color: #ddd;">Nikmati penginap eksklusif ala butik mewah di lokasi strategik.</p>
-            <a href="order.html" class="btn-main">Explore Units</a>
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=2000&q=80">
         </div>
     </div>
 
@@ -152,21 +163,16 @@
     </footer>
 
     <script>
-        // Ambil semua element slide
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const slideInterval = 4000; // Masa tukar slide (dalam milisaat - 4 saat)
+        const slideInterval = 5000; // Tukar kepada 5 saat untuk feel relax sikit
 
         function nextSlide() {
-            // Hilangkan class active dari slide sekarang
             slides[currentSlide].classList.remove('active');
-            // Kira index slide seterusnya
             currentSlide = (currentSlide + 1) % slides.length;
-            // Tambah class active pada slide seterusnya
             slides[currentSlide].classList.add('active');
         }
 
-        // Jalankan fungsi nextSlide secara automatik setiap masa interval
         setInterval(nextSlide, slideInterval);
     </script>
 
