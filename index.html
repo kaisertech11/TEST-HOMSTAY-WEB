@@ -24,8 +24,6 @@
             width: 100%;
             background: transparent; /* Telus */
             z-index: 1000;
-            /* Kita tambah bayang sikit untuk pastikan tulisan nav nampak */
-            /* text-shadow: 0 1px 5px rgba(0,0,0,0.5); */
         }
         .logo { 
             font-weight: 800; 
@@ -33,22 +31,21 @@
             letter-spacing: 3px; 
             text-transform: uppercase; 
             border: 2px solid var(--brand); /* Bingkai hitam untuk branded look */
-            background: white; /* Letak bg putih sikit untuk logo nampak */
+            background: white; /* Letak bg putih sikit untuk logo nampak jelas */
             padding: 5px 15px; 
             text-decoration: none;
             color: black;
         }
         .nav-right { display: flex; align-items: center; gap: 20px; }
-        .nav-right a { color: var(--brand); font-size: 16px; transition: 0.3s; text-decoration: none; }
+        /* Tukar warna ikon/teks nav jadi hitam untuk branded vibe */
+        .nav-right a { color: black; font-size: 16px; transition: 0.3s; text-decoration: none; font-weight: 600; }
         .nav-right a:hover { opacity: 0.5; }
-        
-        /* Ikon Navigasi (Kalau tak nampak atas gambar, boleh tukar warna kat sini) */
-        .nav-right a .fab, .nav-right a .fas { color: black; }
+        .nav-right a i { color: black; }
 
         /* --- Auto-Slider FULL SCREEN --- */
         .slider-container {
             width: 100%;
-            height: 100vh; /* 100% daripada tinggi skrin penuh */
+            height: 100vh; /* 100% tinggi skrin penuh */
             position: relative;
             overflow: hidden;
             background: var(--grey);
@@ -61,7 +58,7 @@
             top: 0;
             left: 0;
             opacity: 0;
-            transition: opacity 1.8s ease-in-out; /* Fade lembut sikit lagi */
+            transition: opacity 1.8s ease-in-out; /* Fade lembut */
             z-index: 1;
         }
 
@@ -76,17 +73,70 @@
             object-fit: cover; /* Pastikan gambar tak herot */
         }
 
-        /* Kita buang Hero Content Teks yang kat tengah-tengah tu */
-        /* .hero-content { ... } -> Dah dibuang */
+        /* Lapisan gelap sikit kat atas gambar supaya tulisan nampak */
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.1); /* Tipis gila, just enough untuk tulisan */
+        }
+
+        /* --- Hero Content Teks Tengah (Dikekalkan) --- */
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Sentiasa kat tengah skrin */
+            z-index: 10;
+            text-align: center;
+            color: white; /* Tulisan putih */
+            text-shadow: 0 3px 15px rgba(0,0,0,0.4); /* Bayang tebal sikit untuk nampak jelas */
+            width: 90%;
+            max-width: 700px;
+        }
+        .hero-content h1 { 
+            font-size: clamp(40px, 8vw, 85px); /* Besar gila macam Uniqlo */
+            font-weight: 800; 
+            letter-spacing: -3px; 
+            line-height: 0.9; 
+            margin-bottom: 20px; 
+            text-transform: uppercase;
+        }
+        .hero-content p {
+            font-weight: 300;
+            font-size: 16px;
+            color: #eee;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-main { 
+            display: inline-block; 
+            padding: 15px 40px; 
+            background: var(--brand); /* Butang hitam */
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            transition: 0.3s; 
+            border-radius: 40px; /* Bucu bulat sikit */
+        }
+        .btn-main:hover { 
+            background: #333; 
+            transform: translateY(-3px) scale(1.03); 
+        }
 
         /* --- Footer Section --- */
         footer {
-            margin-top: auto; /* Pastikan footer sentiasa kat bawah bila skrol */
+            margin-top: auto; /* Pastikan footer sentiasa kat bawah skrin bila skrol */
             background: var(--brand);
             color: var(--light);
             padding: 50px 5%;
             font-size: 13px;
-            z-index: 10; /* Biar dia muncul atas gambar kalau ada glitch */
+            z-index: 10;
         }
 
         .footer-content {
@@ -108,7 +158,9 @@
 
         /* Mobile Friendly */
         @media (max-width: 768px) {
-            .slider-container { height: 80vh; /* Pada mobile kita kurangkan sikit full screen */ }
+            .hero-content h1 { font-size: 40px; letter-spacing: -1px; }
+            .hero-content p { font-size: 14px; }
+            .btn-main { padding: 12px 30px; font-size: 12px; }
             .footer-content { flex-direction: column; text-align: center; }
             .footer-contact { text-align: center; }
             .footer-social-icons a { margin: 0 10px; }
@@ -122,7 +174,7 @@
         <div class="nav-right">
             <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="order.html" style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: black; border-bottom: 2px solid #000;">ORDER</a>
+            <a href="order.html" style="border-bottom: 2px solid #000;">ORDER</a>
         </div>
     </nav>
 
@@ -135,6 +187,12 @@
         </div>
         <div class="slide">
             <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=2000&q=80">
+        </div>
+
+        <div class="hero-content">
+            <h1>ESSENTIAL<br>COMFORT.</h1>
+            <p>Nikmati penginapan eksklusif ala butik mewah di lokasi strategik.</p>
+            <a href="order.html" class="btn-main">EXPLORE UNITS</a>
         </div>
     </div>
 
